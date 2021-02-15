@@ -1,0 +1,5 @@
+.btndrop:focus,
+.btndrop:active {
+	outline: none !important;
+	box-shadow: none;
+}

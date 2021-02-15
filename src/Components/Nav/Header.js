@@ -26,14 +26,13 @@ const Header = () => {
 					</div>
 				</a>
 
-				<div class='collapse navbar-collapse' id='navbarSupportedContent'>
+				<div class='collapse navbar-collapse'>
 					<ul class='navbar-nav mr-auto'></ul>
-					<form class='form-inline my-2 my-lg-0 '>
+					<form class='form-inline  my-lg-0 '>
 						<input
-							class='form-control mr-sm-2'
+							class='form-control '
 							type='search'
 							placeholder='Search entire store here...'
-							aria-label='Search'
 						/>
 						<button class='btn  my-2 my-sm-0' type='submit'>
 							<i class='fas fa-shopping-cart'></i>

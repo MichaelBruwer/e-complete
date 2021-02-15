@@ -1,0 +1,13 @@
+.btndrop:focus,
+.btndrop:active {
+	outline: none !important;
+	box-shadow: none;
+}
+ul {
+	list-style-type: none;
+}
+hr {
+	border-top: 1px dotted #000000 !important;
+	margin-bottom: 5px !important;
+	margin-top: 5px !important;
+}
