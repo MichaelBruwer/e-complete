@@ -1,119 +1,58 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addToCart } from '../Actions/cartActions';
 
-const Test = () => {
-	return (
-		<div class='row'>
-			<div class='col-6 text-right'>
-				<a
-					class='btn btn-primary mb-3 mr-1'
-					href='#carouselExampleIndicators2'
-					role='button'
-					data-slide='prev'>
-					<i class='fa fa-arrow-left'></i>
-				</a>
-				<a
-					class='btn btn-primary mb-3 '
-					href='#carouselExampleIndicators2'
-					role='button'
-					data-slide='next'>
-					<i class='fa fa-arrow-right'></i>
-				</a>
-			</div>
-			<div class='col-12'>
-				<div
-					id='carouselExampleIndicators2'
-					class='carousel slide'
-					data-ride='carousel'>
-					<div class='carousel-inner'>
-						<div class='carousel-item active'>
-							<div class='row'>
-								<div class='col-md-4 mb-3'>
-									<div class='card border-0' style={{ width: '18rem' }}>
-										<img
-											class='card-img-top'
-											src='./Imgs/backpack.jpg'
-											alt='Card  cap'
-										/>
-										<div class='card-body'>
-											<h5 class='card-title'> fantastic backpack</h5>
-											<p class='card-text'>
-												Some quick example text to build on the card title and
-												make up the bulk of the card's content.
-											</p>
-											<button class='btn btn-primary'>Add to Cart</button>
-											<i class='fas fa-heart px-3'></i>
-											<i class='fas fa-chart-bar'></i>
-										</div>
-									</div>
-								</div>
-								<div class='col-md-4 mb-3'>
-									<div class='card border-0' style={{ width: '18rem' }}>
-										<img
-											class='card-img-top'
-											src='./Imgs/bag.jpg'
-											alt='Card  cap'
-										/>
-										<div class='card-body'>
-											<h5 class='card-title'>great bag</h5>
-											<p class='card-text'>
-												Some quick example text to build on the card title and
-												make up the bulk of the card's content.
-											</p>
-											<button class='btn btn-primary'>Add to Cart</button>
-											<i class='fas fa-heart px-3'></i>
-											<i class='fas fa-chart-bar'></i>
-										</div>
-									</div>
-								</div>
-								<div class='col-md-4 mb-3'>
-									<div class='card border-0' style={{ width: '15rem' }}>
-										<img
-											class='card-img-top'
-											src='./Imgs/fitness.jpg'
-											alt='Card  cap'
-										/>
-										<div class='card-body'>
-											<h5 class='card-title'>Training video</h5>
-											<p class='card-text'>
-												Some quick example text to build on the card title and
-												make up the bulk of the card's content.
-											</p>
-											<button class='btn btn-primary'>Add to Cart</button>
-											<i class='fas fa-heart px-3'></i>
-											<i class='fas fa-chart-bar'></i>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class='carousel-item'>
-							<div class='row'>
-								<div class='col-md-4 mb-3'>
-									<div class='card border-0' style={{ width: '18rem' }}>
-										<img
-											class='card-img-top'
-											src='./Imgs/hoodie.png'
-											alt='Card  cap'
-										/>
-										<div class='card-body'>
-											<h5 class='card-title'>Best Hoodie</h5>
-											<p class='card-text'>
-												Some quick example text to build on the card title and
-												make up the bulk of the card's content.
-											</p>
-											<button class='btn btn-primary'>Add to Cart</button>
-											<i class='fas fa-heart px-3'></i>
-											<i class='fas fa-chart-bar'></i>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+class Home extends Component {
+	handleClick = (id) => {
+		this.props.addToCart(id);
+	};
+
+	render() {
+		let itemList = this.props.items.map((item) => {
+			return (
+				<div className='card' key={item.id}>
+					<div className='card-image'>
+						<img src={item.img} alt={item.title} />
+						<span className='card-title'>{item.title}</span>
+						<span
+							to='/'
+							className='btn-floating halfway-fab waves-effect waves-light red'
+							onClick={() => {
+								this.handleClick(item.id);
+							}}>
+							<i className='material-icons'>add</i>
+						</span>
+					</div>
+
+					<div className='card-content'>
+						<p>{item.desc}</p>
+						<p>
+							<b>Price: {item.price}$</b>
+						</p>
 					</div>
 				</div>
+			);
+		});
+
+		return (
+			<div className='container'>
+				<h3 className='center'>Our items</h3>
+				<div className='box'>{itemList}</div>
 			</div>
-		</div>
-	);
+		);
+	}
+}
+const mapStateToProps = (state) => {
+	return {
+		items: state.items,
+	};
+};
+const mapDispatchToProps = (dispatch) => {
+	return {
+		addToCart: (id) => {
+			dispatch(addToCart(id));
+		},
+	};
 };
 
-export default Test;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

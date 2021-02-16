@@ -1,4 +1,6 @@
 import './App.css';
+
+import React, { Component } from 'react';
 // Header
 import Header from './Components/Nav/Header';
 import Footer from './Components/Nav/Footer';
@@ -6,7 +8,8 @@ import Home from './Components/Pages/Home';
 import Cat from './Components/Pages/Cat';
 import Checkout from './Components/Pages/Checkout';
 import Product from './Components/Pages/Product';
-import Test from './Components/Pages/Test';
+// test
+// import Test from './Components/Pages/Test';
 
 function App() {
 	return (
@@ -16,7 +19,7 @@ function App() {
 			<Cat />
 			<Product />
 			<Checkout />
-			{/* <Test /> */}
+			{/* <Test />/ */}
 			<Footer />
 		</div>
 	);
